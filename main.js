@@ -99,29 +99,37 @@ let formData = [
 
 //"first Name code"
 
-let form = formData[ 0 ];
+
 
 let fieldsDiv = document.querySelector("#fields")
 
-  for(var index = 0; index<=7;index++) {
-      let userInfo = formData[index]
-      if(userInfo.type == "textarea") {
+  for(var index = 0; index<=formData.length; index++) {
+
+    let form = formData[index];
+
+      if(form.type == "textarea") {
           let textarea = document.createElement("textarea")
           fieldsDiv.append(textarea)
-      } else if(userInfo.type == "select") {
+      } else if(form.type == "select") {
          let select = document.createElement("select")
          fieldsDiv.append(select)
+         for (var e = 0; e < form.options.length; e++) {
+           let option = document.createElement("option")
+           option.label = form.options[e].label;
+           select.add(option)
+         }
       } else {
         let textbox = document.createElement("input")
-        textbox.type = userInfo.type
-        textbox.placeholder = userInfo.label
-        textbox.id = userInfo.id
+        textbox.type = form.type
+        textbox.placeholder = form.label
+        textbox.id = form.id
         fieldsDiv.append(textbox)
       }
 
-      let opt1 = document.createElement("options")
-      let opt2 = document.createElement("options")
 
 
-  console.log(userInfo);
+
+
+
+  console.log(form);
 }
